@@ -10,37 +10,49 @@ html,body{
     height: 100%;
 }
 #body{
-    transition: ease 1s
+    transition: ease 1s;
+    background: #F1F0F0;
 }
-.main-container{
-    position: relative;
-    min-height: 100%;
+
+/*
+    boton de modo noche, titulo y texto explicativo
+*/
+#switchModes{
+    background: rgb(138, 142, 184);
+    padding: 2px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+    user-select: none;
 }
+#nightMode{
+    opacity: 70%;
+    width: 28px;
+    height: 28px;
+    user-select: none;
+}
+
 header{
     width: 100%;
-}
-header > img{
-    position: absolute;
-    user-select: none;
-    cursor: pointer;
 }
 header > h1{
     color: #1b1717;
     font-size: 5rem;
     text-align: center;
-    margin-top: 15px;
     transition: ease 1s
 }
 p{
     color: #1b1717;
-    margin-top: 15px;
     font-size: 1.6rem;
     text-align: center;
     transition: ease 1s
 }
-body{
-    background: #F1F0F0;
-}
+
+/*
+    text area de ingreso de texto
+*/
 .textarea-container{
     display: flex;
     justify-content: center;
@@ -65,12 +77,17 @@ body{
     position: relative;
     border: none;
     outline: none;
+    resize: none;
     transition: ease 1s
 }
+
+/*
+    candados y botones para encriptar y desencriptar
+*/
 .buttons-container{
     display: flex;
     justify-content: center;
-    padding-top: 28px;
+    padding-top: 15px;
     margin-right: 30px;
     margin-left: 30px;
 }
@@ -94,21 +111,27 @@ body{
     margin-top: 10px;
     margin-left: 19px;
     user-select: none;
-    transition: ease 1s
+    opacity: 1;
+    transition: ease 1s;
+    
 }
 .padlock-locked{
     margin-top: 10px;
     margin-right: 19px;
     user-select: none;
+    opacity: 1;
     transition: ease 1s
 }
+
+
+/*
+    text area para mostrar el resultado de la encriptacion o desencriptacion
+*/
 .translated-text-margin{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
 .translated-text-margin > textarea{
     color: #1b1717;
     margin-right: 30px;
@@ -127,14 +150,20 @@ body{
     position: relative;
     border: none;
     outline: none;
+    resize: none;
     transition: ease 1s
 }
+
+
+/*
+    boton para copiar y notificacion de texto copiado
+*/
 .clipboard-container{
     display: flex;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
 }
 #copy-button{
     width: 95.14px;
@@ -147,31 +176,20 @@ body{
     padding: 10px;
     border: none;
     cursor: pointer;
-    font-size: 2.0rem;;
-    user-select: none;
-}
-#switchModes{
-    background: rgb(138, 142, 184);
-    position: absolute;
-    padding: 2px;
-    border-radius: 20px;
-    top: 10px;
-    left: 20px;
-    cursor: pointer;
-    user-select: none;
-}
-#nightMode{
-    opacity: 70%;
-    width: 28px;
-    height: 28px;
+    font-size: 2.0rem;
     user-select: none;
 }
 #copy-text{
-    text-align: center;
     /* -webkit-transition: ease-in 2s linear; */
-    transition: ease-out 1s
+    margin-top: 25px;
+    margin-left: 10px;
+    transition: ease-out 1s;
 }
 
+
+/*
+    decoracion de ola
+*/
 #wave{
     position: fixed;
     bottom: 0; 
@@ -180,11 +198,48 @@ body{
     
 }
 
+
+/*
+    texto footer
+*/
+#footer-text{
+    margin-top: 15px;
+    color: black;
+    opacity: 60%;
+    cursor: pointer;
+    padding-bottom: 15px;
+}
+
+/*
+    efectos de botones
+*/
 button, .clipboard-button-container{
     transition-duration: 0.6s;
 }
 button:hover, #copy-button:hover {
     background:#F5EDED ;
 }
-/* @media screen and (max-width:320px){
-} */
+
+
+/*
+    media queries
+*/
+@media screen and (max-width:375px){
+    .padlock-open, .padlock-locked{
+        opacity: 0;
+    }
+}
+
+ @media screen and (min-width:900px){
+    #textarea{
+        width: 550px;
+        height: 160px;
+    }
+    #translated-text{
+        width: 550px;
+        height: 160px;
+    }
+}
+
+
+

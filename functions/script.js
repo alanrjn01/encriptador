@@ -7,10 +7,9 @@ const copyButton = document.getElementById("copy-button");
 const translatedTextHtml = document.getElementById("translated-text");
 const clipboardContainerId = document.getElementById("clipboardContainerId");
 const nightIcon = document.getElementById("switchModes");
-let defaultMode = true
+let defaultMode = true;
 
-
-
+console.log(window.screen.width + "x" + window.screen.height);
 
 /*
   comprueba si el cuadro de texto esta vacio o tiene la frase por defecto y devuelve true o false
@@ -23,7 +22,6 @@ const checkTextArea = () => {
   );
 };
 
-
 /*
   comprueba si el textarea no esta vacio y tiene texto para encriptar.
   creo una variable para el texto encriptado, el cual voy a ir rellenando en el for
@@ -35,11 +33,41 @@ const Encrypt = () => {
   let encryptedText = "";
   if (text != "") {
     for (let i = 0; i <= text.length; i++) {
-      if (text.charAt(i) === "a" || text.charAt(i)==="á" || text.charAt(i) === "A" || text.charAt(i)==="Á") encryptedText += "ai";
-      else if (text.charAt(i) === "e" || text.charAt(i) === "é" || text.charAt(i) === "E" || text.charAt(i) === "É") encryptedText += "enter";
-      else if (text.charAt(i) === "i" || text.charAt(i) === "í" || text.charAt(i) === "I" || text.charAt(i) === "Í") encryptedText += "imes";
-      else if (text.charAt(i) === "o" || text.charAt(i) === "ó" || text.charAt(i) === "O" || text.charAt(i) === "Ó") encryptedText += "ober";
-      else if (text.charAt(i) === "u" || text.charAt(i) === "ú" || text.charAt(i) === "U" || text.charAt(i) === "Ú") encryptedText += "ufat";
+      if (
+        text.charAt(i) === "a" ||
+        text.charAt(i) === "á" ||
+        text.charAt(i) === "A" ||
+        text.charAt(i) === "Á"
+      )
+        encryptedText += "ai";
+      else if (
+        text.charAt(i) === "e" ||
+        text.charAt(i) === "é" ||
+        text.charAt(i) === "E" ||
+        text.charAt(i) === "É"
+      )
+        encryptedText += "enter";
+      else if (
+        text.charAt(i) === "i" ||
+        text.charAt(i) === "í" ||
+        text.charAt(i) === "I" ||
+        text.charAt(i) === "Í"
+      )
+        encryptedText += "imes";
+      else if (
+        text.charAt(i) === "o" ||
+        text.charAt(i) === "ó" ||
+        text.charAt(i) === "O" ||
+        text.charAt(i) === "Ó"
+      )
+        encryptedText += "ober";
+      else if (
+        text.charAt(i) === "u" ||
+        text.charAt(i) === "ú" ||
+        text.charAt(i) === "U" ||
+        text.charAt(i) === "Ú"
+      )
+        encryptedText += "ufat";
       else encryptedText += text.charAt(i);
     }
     translatedTextHtml.innerHTML = encryptedText;
@@ -48,7 +76,6 @@ const Encrypt = () => {
     };
   }
 };
-
 
 /*
   recoje el texto a desencriptar y creo una variable para el nuevo texto, a su vez utilizo una bandera
@@ -123,78 +150,115 @@ const Decrypt = () => {
   }
 };
 
+/*
+  recibe un texto y mediante un try and catch lo almacena en el portapapeles del usuario y crea 
+  un elemento <p> que aparece y desaparece con un mensaje de notificacion
+*/
 const copyToClipboard = (value) => {
-  try{
-    navigator.clipboard.writeText(value)
-    let textNotification = document.createElement("p")
-    textNotification.id = "copy-text"
-    textNotification.innerHTML = "texto copiado"
-    !defaultMode ? textNotification.style.color="#E8E0E0" : null
-    clipboardContainerId.appendChild(textNotification)
-    setTimeout(()=>{
-      textNotification.style.opacity="0"
-      setTimeout(()=>{textNotification.remove()},1000)
-    },1000)
+  try {
+    navigator.clipboard.writeText(value);
+    createTextNotification("p", "copy-text", "texto copiado");
+  } catch {
+    alert("ha ocurrido un error al copiar el texto");
+    console.log("error");
   }
-  catch{
-    alert("ha ocurrido un error al copiar el texto")
-    console.log("error")
-  }
-  
 };
 
+/*
+  recibe una etiqueta, una id, y un texto. a partir de esto crea un elemento html hijo de clipboardContainer
+  con un setTimeOut lo elimina al transcurrir 1 segundo
+*/
+const createTextNotification = (element, id, HTMLText) => {
+  let textNotification = document.createElement(element);
+  textNotification.id = id;
+  textNotification.innerHTML = HTMLText;
+  !defaultMode ? (textNotification.style.color = "#E8E0E0") : null;
+  clipboardContainerId.appendChild(textNotification);
+  setTimeout(() => {
+    textNotification.style.opacity = "0";
+    setTimeout(() => {
+      textNotification.remove();
+    }, 1000);
+  }, 1000);
+};
+
+/*
+  funcion que aplica estilos en el css de los elementos para efectuar un modo noche
+*/
 const useNightMode = () => {
-  document.getElementById("body").style.background="#2E3540"
-  document.getElementById("textarea").style.background="rgb(67 71 72)"
-  document.getElementById("textarea").style.color="#E8E0E0"
-  translatedTextHtml.style.background="rgb(67 71 72)"
-  translatedTextHtml.style.color="#E8E0E0"
-  document.getElementById("wave-design").style.fill="rgb(148 145 155)"
-  document.getElementsByTagName("h1")[0].style.color="#E8E0E0"
-  document.getElementById("appDescription").style.color="#E8E0E0"
-  document.getElementById("padlockLocked").style.fill="#E8E0E0"
-  document.getElementById("padlockOpen").style.fill="#E8E0E0"
-  document.getElementById("switchModes").style.background= "rgb(197 170 130)"
-  document.getElementById("nightMode").src="assets/sun.svg"
-  
-}
+  document.getElementById("body").style.background = "#2E3540";
+  document.getElementById("textarea").style.background = "rgb(67 71 72)";
+  document.getElementById("textarea").style.color = "#E8E0E0";
+  translatedTextHtml.style.background = "rgb(67 71 72)";
+  translatedTextHtml.style.color = "#E8E0E0";
+  document.getElementById("wave-design").style.fill = "rgb(148 145 155)";
+  document.getElementsByTagName("h1")[0].style.color = "#E8E0E0";
+  document.getElementById("appDescription").style.color = "#E8E0E0";
+  document.getElementById("padlockLocked").style.fill = "#E8E0E0";
+  document.getElementById("padlockOpen").style.fill = "#E8E0E0";
+  document.getElementById("switchModes").style.background = "rgb(197 170 130)";
+  document.getElementById("decrypt-button").style.background = "rgb(44 44 44)";
+  document.getElementById("decrypt-button").style.color = "#E8E0E0";
+  document.getElementById("encrypt-button").style.background = "rgb(44 44 44)";
+  document.getElementById("encrypt-button").style.color = "#E8E0E0";
+  document.getElementById("copy-button").style.background = "rgb(44 44 44)";
+  document.getElementById("copy-button").style.color = "#E8E0E0";
+  document.getElementById("footer-text").style.color = "#E8E0E0";
+  document.getElementById("nightMode").src = "assets/sun.svg";
+};
 
+/*
+  funcion que aplica estilos en el css de los elementos para volver al estilo por defecto 
+*/
 const useDefaultMode = () => {
-  document.getElementById("body").style.background="#F1F0F0"
-  document.getElementById("textarea").style.background="#FDF2D6"
-  document.getElementById("textarea").style.color="#1b1717"
-  translatedTextHtml.style.background="#FDF2D6"
-  translatedTextHtml.style.color="#1b1717"
-  document.getElementById("wave-design").style.fill="#0099ff"
-  document.getElementsByTagName("h1")[0].style.color="#1b1717"
-  document.getElementById("appDescription").style.color="#1b1717"
-  document.getElementById("padlockLocked").style.fill="black"
-  document.getElementById("padlockOpen").style.fill="black"
-  document.getElementById("switchModes").style.background= "rgb(138, 142, 184)"
-  document.getElementById("nightMode").src="assets/night-mode.svg"
-}
-
+  document.getElementById("body").style.background = "#F1F0F0";
+  document.getElementById("textarea").style.background = "#FDF2D6";
+  document.getElementById("textarea").style.color = "#1b1717";
+  translatedTextHtml.style.background = "#FDF2D6";
+  translatedTextHtml.style.color = "#1b1717";
+  document.getElementById("wave-design").style.fill = "#0099ff";
+  document.getElementsByTagName("h1")[0].style.color = "#1b1717";
+  document.getElementById("appDescription").style.color = "#1b1717";
+  document.getElementById("padlockLocked").style.fill = "black";
+  document.getElementById("padlockOpen").style.fill = "black";
+  document.getElementById("switchModes").style.background =
+    "rgb(138, 142, 184)";
+  document.getElementById("decrypt-button").style.background = "#FAFAFA";
+  document.getElementById("decrypt-button").style.color = "black";
+  document.getElementById("encrypt-button").style.background = "#FAFAFA";
+  document.getElementById("encrypt-button").style.color = "black";
+  document.getElementById("copy-button").style.background = "#FAFAFA";
+  document.getElementById("copy-button").style.color = "black";
+  document.getElementById("footer-text").style.color = "black";
+  document.getElementById("nightMode").src = "assets/night-mode.svg";
+};
 
 /*
   asignacion de las funciones a los botones
 */
 
-document.getElementById("switchModes").addEventListener("click",()=>{
-  if(defaultMode){
-    useNightMode()
-    defaultMode = !defaultMode
-  }else{
-    useDefaultMode()
-    defaultMode = !defaultMode
+/*
+  detecta el click en el boton de switchModes para cambiar entre el modo noche y el modo default
+*/
+document.getElementById("switchModes").addEventListener("click", () => {
+  if (defaultMode) {
+    useNightMode();
+    defaultMode = !defaultMode;
+  } else {
+    useDefaultMode();
+    defaultMode = !defaultMode;
   }
-})
+});
 
 /*
   usa la funcion checkTextArea para comprobar si la frase por defecto del cuadro de traduccion
   sigue en el mismo, de ser asi ejecuta un alert en el navegador diciendo que no se puede copiar 
 */
 copyButton.onclick = () => {
-  if (checkTextArea()) alert("no hay nada para copiar")
+  if (checkTextArea()) alert("no hay nada para copiar");
+};
+document.getElementById("footer-text").onclick = () => {
+  window.open("https://github.com/alanrjn01");
 };
 
 encryptButton.onclick = Encrypt;
