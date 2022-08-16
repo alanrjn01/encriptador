@@ -23,18 +23,19 @@ header > img{
     cursor: pointer;
 }
 header > h1{
+    color: #1b1717;
     font-size: 5rem;
     text-align: center;
     margin-top: 15px;
 }
 p{
+    color: #1b1717;
     margin-top: 15px;
     font-size: 1.6rem;
     text-align: center;
 }
 body{
     background: #F1F0F0;
-    overflow-y:hidden;
 }
 .textarea-container{
     display: flex;
@@ -79,17 +80,19 @@ body{
     user-select: none;
 }
 .buttons-container #encrypt-button{
-    margin-right: px;
+    margin-right: 15px;
 }
 .buttons-container #decrypt-button{
     margin-left: 15px;
 }
 .padlock-open{
-    margin-right: 19px;
+    margin-top: 10px;
+    margin-left: 19px;
     user-select: none;
 }
 .padlock-locked{
-    margin-left: 19px;
+    margin-top: 10px;
+    margin-right: 19px;
     user-select: none;
 }
 .translated-text-margin{
@@ -158,9 +161,10 @@ body{
     /* -webkit-transition: ease-in 2s linear; */
     transition: ease-out 1s
 }
+
 #wave{
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 0; 
     z-index: -1;
     opacity: 30%;
 }
