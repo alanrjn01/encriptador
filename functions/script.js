@@ -7,17 +7,9 @@ const copyButton = document.getElementById("copy-button");
 const translatedTextHtml = document.getElementById("translated-text");
 const clipboardContainerId = document.getElementById("clipboardContainerId");
 const nightIcon = document.getElementById("switchModes");
+let defaultMode = true
 
 
-/*
-  usa la funcion checkTextArea para comprobar si la frase por defecto del cuadro de traduccion
-  sigue en el mismo, de ser asi ejecuta un alert en el navegador diciendo que no se puede copiar 
-*/
-copyButton.onclick = () => {
-  if (checkTextArea()) {
-      alert("no hay nada para copiar");
-  }
-};
 
 
 /*
@@ -134,13 +126,14 @@ const Decrypt = () => {
 const copyToClipboard = (value) => {
   try{
     navigator.clipboard.writeText(value)
-    let e = document.createElement("p")
-    e.id = "copy-text"
-    e.innerHTML = "texto copiado"
-    clipboardContainerId.appendChild(e)
+    let textNotification = document.createElement("p")
+    textNotification.id = "copy-text"
+    textNotification.innerHTML = "texto copiado"
+    !defaultMode ? textNotification.style.color="#E8E0E0" : null
+    clipboardContainerId.appendChild(textNotification)
     setTimeout(()=>{
-      e.style.opacity="0"
-      setTimeout(()=>{e.remove()},1000)
+      textNotification.style.opacity="0"
+      setTimeout(()=>{textNotification.remove()},1000)
     },1000)
   }
   catch{
@@ -185,15 +178,24 @@ const useDefaultMode = () => {
 /*
   asignacion de las funciones a los botones
 */
-let bandera = true
+
 document.getElementById("switchModes").addEventListener("click",()=>{
-  if(bandera){
+  if(defaultMode){
     useNightMode()
-    bandera = !bandera
+    defaultMode = !defaultMode
   }else{
     useDefaultMode()
-    bandera = !bandera
+    defaultMode = !defaultMode
   }
 })
+
+/*
+  usa la funcion checkTextArea para comprobar si la frase por defecto del cuadro de traduccion
+  sigue en el mismo, de ser asi ejecuta un alert en el navegador diciendo que no se puede copiar 
+*/
+copyButton.onclick = () => {
+  if (checkTextArea()) alert("no hay nada para copiar")
+};
+
 encryptButton.onclick = Encrypt;
 decryptButton.onclick = Decrypt;

@@ -8,7 +8,9 @@
 }
 html,body{
     height: 100%;
-    
+}
+#body{
+    transition: ease 1s
 }
 .main-container{
     position: relative;
@@ -27,12 +29,14 @@ header > h1{
     font-size: 5rem;
     text-align: center;
     margin-top: 15px;
+    transition: ease 1s
 }
 p{
     color: #1b1717;
     margin-top: 15px;
     font-size: 1.6rem;
     text-align: center;
+    transition: ease 1s
 }
 body{
     background: #F1F0F0;
@@ -61,6 +65,7 @@ body{
     position: relative;
     border: none;
     outline: none;
+    transition: ease 1s
 }
 .buttons-container{
     display: flex;
@@ -89,11 +94,13 @@ body{
     margin-top: 10px;
     margin-left: 19px;
     user-select: none;
+    transition: ease 1s
 }
 .padlock-locked{
     margin-top: 10px;
     margin-right: 19px;
     user-select: none;
+    transition: ease 1s
 }
 .translated-text-margin{
     display: flex;
@@ -120,6 +127,7 @@ body{
     position: relative;
     border: none;
     outline: none;
+    transition: ease 1s
 }
 .clipboard-container{
     display: flex;
@@ -150,11 +158,13 @@ body{
     top: 10px;
     left: 20px;
     cursor: pointer;
+    user-select: none;
 }
 #nightMode{
     opacity: 70%;
     width: 28px;
     height: 28px;
+    user-select: none;
 }
 #copy-text{
     text-align: center;
@@ -167,6 +177,7 @@ body{
     bottom: 0; 
     z-index: -1;
     opacity: 30%;
+    
 }
 
 button, .clipboard-button-container{
@@ -175,5 +186,5 @@ button, .clipboard-button-container{
 button:hover, #copy-button:hover {
     background:#F5EDED ;
 }
-@media screen and (min-width:1100px){
-}
+/* @media screen and (max-width:320px){
+} */
