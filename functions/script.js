@@ -30,45 +30,46 @@ const checkTextArea = () => {
 */
 const Encrypt = () => {
   let text = document.getElementById("textarea").value;
+  let textReplace = text.replace(/[$%&|<>#]/g,"")
   let encryptedText = "";
-  if (text != "") {
-    for (let i = 0; i <= text.length; i++) {
+  if (textReplace != "") {
+    for (let i = 0; i <= textReplace.length; i++) {
       if (
-        text.charAt(i) === "a" ||
-        text.charAt(i) === "á" ||
-        text.charAt(i) === "A" ||
-        text.charAt(i) === "Á"
+        textReplace.charAt(i) === "a" ||
+        textReplace.charAt(i) === "á" ||
+        textReplace.charAt(i) === "A" ||
+        textReplace.charAt(i) === "Á"
       )
         encryptedText += "ai";
       else if (
-        text.charAt(i) === "e" ||
-        text.charAt(i) === "é" ||
-        text.charAt(i) === "E" ||
-        text.charAt(i) === "É"
+        textReplace.charAt(i) === "e" ||
+        textReplace.charAt(i) === "é" ||
+        textReplace.charAt(i) === "E" ||
+        textReplace.charAt(i) === "É"
       )
         encryptedText += "enter";
       else if (
-        text.charAt(i) === "i" ||
-        text.charAt(i) === "í" ||
-        text.charAt(i) === "I" ||
-        text.charAt(i) === "Í"
+        textReplace.charAt(i) === "i" ||
+        textReplace.charAt(i) === "í" ||
+        textReplace.charAt(i) === "I" ||
+        textReplace.charAt(i) === "Í"
       )
         encryptedText += "imes";
       else if (
-        text.charAt(i) === "o" ||
-        text.charAt(i) === "ó" ||
-        text.charAt(i) === "O" ||
-        text.charAt(i) === "Ó"
+        textReplace.charAt(i) === "o" ||
+        textReplace.charAt(i) === "ó" ||
+        textReplace.charAt(i) === "O" ||
+        textReplace.charAt(i) === "Ó"
       )
         encryptedText += "ober";
       else if (
-        text.charAt(i) === "u" ||
-        text.charAt(i) === "ú" ||
-        text.charAt(i) === "U" ||
-        text.charAt(i) === "Ú"
+        textReplace.charAt(i) === "u" ||
+        textReplace.charAt(i) === "ú" ||
+        textReplace.charAt(i) === "U" ||
+        textReplace.charAt(i) === "Ú"
       )
         encryptedText += "ufat";
-      else encryptedText += text.charAt(i);
+      else encryptedText += textReplace.charAt(i);
     }
     translatedTextHtml.innerHTML = encryptedText;
     copyButton.onclick = () => {
