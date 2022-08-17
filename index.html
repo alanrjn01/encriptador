@@ -13,46 +13,49 @@
     <link rel="shortcut icon" href="assets/padlock-pngrepo-com.png" type="image/x-icon">
 </head>
 <header>
-    <div id="switchModes">
-        <img id='nightMode' src="assets/night-mode.svg" alt="">
+    <div class="switch-mode-button" id="switchModes">
+        <img id='imgMode' class="img-mode" src="assets/night-mode.svg" alt="">
     </div>
-    <h1 id="title">
+    <h1 class="title">
         Encriptador
     </h1> 
  </header>
 <body id="body">
-        <p id="appDescription">
+        <p id="appDescription" class="app-description">
         Porfavor, no use letras con tíldes o carácteres especiales. <br/> Tu texto será convertido a minúsculas.
         </p>
         <div class="textarea-container">
-            <textarea placeholder="escribe algo..." name="" id="textarea"></textarea>
+            <textarea class="text-area" placeholder="ingrese un texto..." name="" id="textarea"></textarea>
         </div>
         <div class="buttons-container">
             <svg class="padlock-locked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="-5 -2 24 24">
-                <path id="padlockLocked" fill="black" d="M12 10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2V5a5 5 0 1 1 10 0v5zm-5 7a2 2 0 1 0 0-4a2 2 0 0 0 0 4zm3-7V5a3 3 0 1 0-6 0v5h6z"/>
+                <path class="padlock-path" id="padlockLocked" fill="black" d="M12 10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2V5a5 5 0 1 1 10 0v5zm-5 7a2 2 0 1 0 0-4a2 2 0 0 0 0 4zm3-7V5a3 3 0 1 0-6 0v5h6z"/>
             </svg>
-            <button id="encrypt-button">
+            <button class="button" id="encrypt-button">
                 encriptar
             </button>
-            <button id="decrypt-button">
+            <button class="button" id="decrypt-button">
                 desencriptar
             </button>
             <svg class='padlock-open' xmlns="http://www.w3.org/2000/svg" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="-5 -2 24 24">
-                <path id="padlockOpen" fill="black" d="M12 5h-2a3 3 0 1 0-6 0v5h8a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2V5a5 5 0 1 1 10 0zM7 17a2 2 0 1 0 0-4a2 2 0 0 0 0 4z"/>
+                <path class="padlock-path" id="padlockOpen" fill="black" d="M12 5h-2a3 3 0 1 0-6 0v5h8a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2V5a5 5 0 1 1 10 0zM7 17a2 2 0 1 0 0-4a2 2 0 0 0 0 4z"/>
             </svg>
         </div>
         <div class="translated-text-margin">
-                <textarea readonly id="translated-text">todavia no hay nada que mostrar. intenta encriptar algo!</textarea>
+                <textarea class="text-area" readonly id="translated-text" placeholder="todavia no hay nada que mostrar. ¡prueba a encriptar algo!"></textarea>
                 
         </div>
         <div class="clipboard-container" id="clipboardContainerId">
-            <button id="copy-button">copiar</button>
+            <button id="copyButton" class="copy-button">copiar</button>
         </div>
         <footer>
-            <p id="footer-text">desarrollado por alanrjn</p>
+            <p id="footerText" class="footer-text">desarrollado por alanrjn</p>
+            <svg class="github-svg" id="githubSvg" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path id="githubPath" fill="black" fill-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z" clip-rule="evenodd"/>
+            </svg>
         </footer>
-        <svg id="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path id="wave-design" fill="#0099ff" fill-opacity="1" d="M0,160L21.8,160C43.6,160,87,160,131,144C174.5,128,218,96,262,80C305.5,64,349,64,393,69.3C436.4,75,480,85,524,112C567.3,139,611,181,655,208C698.2,235,742,245,785,213.3C829.1,181,873,107,916,85.3C960,64,1004,96,1047,128C1090.9,160,1135,192,1178,192C1221.8,192,1265,160,1309,154.7C1352.7,149,1396,171,1418,181.3L1440,192L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z"></path>
+        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path class="wave-path" id="wavePath" fill="#0099ff" fill-opacity="1" d="M0,160L21.8,160C43.6,160,87,160,131,144C174.5,128,218,96,262,80C305.5,64,349,64,393,69.3C436.4,75,480,85,524,112C567.3,139,611,181,655,208C698.2,235,742,245,785,213.3C829.1,181,873,107,916,85.3C960,64,1004,96,1047,128C1090.9,160,1135,192,1178,192C1221.8,192,1265,160,1309,154.7C1352.7,149,1396,171,1418,181.3L1440,192L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z"></path>
         </svg>
 </body>
 <script src="functions/script.js"></script>

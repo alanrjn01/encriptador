@@ -3,7 +3,7 @@
 */
 const encryptButton = document.getElementById("encrypt-button");
 const decryptButton = document.getElementById("decrypt-button");
-const copyButton = document.getElementById("copy-button");
+const copyButton = document.getElementById("copyButton");
 const translatedTextHtml = document.getElementById("translated-text");
 const clipboardContainerId = document.getElementById("clipboardContainerId");
 const nightIcon = document.getElementById("switchModes");
@@ -158,7 +158,7 @@ const Decrypt = () => {
 const copyToClipboard = (value) => {
   try {
     navigator.clipboard.writeText(value);
-    createTextNotification("p", "copy-text", "texto copiado");
+    createTextNotification("p", "copyText", "texto copiado");
   } catch {
     alert("ha ocurrido un error al copiar el texto");
     console.log("error");
@@ -187,52 +187,45 @@ const createTextNotification = (element, id, HTMLText) => {
   funcion que aplica estilos en el css de los elementos para efectuar un modo noche
 */
 const useNightMode = () => {
-  document.getElementById("body").style.background = "#2E3540";
-  document.getElementById("textarea").style.background = "rgb(67 71 72)";
-  document.getElementById("textarea").style.color = "#E8E0E0";
-  translatedTextHtml.style.background = "rgb(67 71 72)";
-  translatedTextHtml.style.color = "#E8E0E0";
-  document.getElementById("wave-design").style.fill = "rgb(148 145 155)";
-  document.getElementsByTagName("h1")[0].style.color = "#E8E0E0";
-  document.getElementById("appDescription").style.color = "#E8E0E0";
-  document.getElementById("padlockLocked").style.fill = "#E8E0E0";
-  document.getElementById("padlockOpen").style.fill = "#E8E0E0";
-  document.getElementById("switchModes").style.background = "rgb(197 170 130)";
-  document.getElementById("decrypt-button").style.background = "rgb(44 44 44)";
-  document.getElementById("decrypt-button").style.color = "#E8E0E0";
-  document.getElementById("encrypt-button").style.background = "rgb(44 44 44)";
-  document.getElementById("encrypt-button").style.color = "#E8E0E0";
-  document.getElementById("copy-button").style.background = "rgb(44 44 44)";
-  document.getElementById("copy-button").style.color = "#E8E0E0";
-  document.getElementById("footer-text").style.color = "#E8E0E0";
-  document.getElementById("nightMode").src = "assets/sun.svg";
+  console.log(document.getElementById("body").className)
+  document.getElementById("body").className += " body-night-mode"
+  document.getElementById("textarea").className += " text-area-night-mode"
+  translatedTextHtml.className+=" text-area-night-mode"
+  document.getElementById("wavePath").setAttribute("fill","rgb(148 145 155)")
+  document.getElementsByTagName("h1")[0].className+=" text-night-mode"
+  document.getElementById("appDescription").className+=" text-night-mode"
+  document.getElementById("padlockLocked").setAttribute("fill","#E8E0E0")
+  document.getElementById("padlockOpen").setAttribute("fill","#E8E0E0")
+  document.getElementById("switchModes").className+=" switch-mode-night-mode"
+  document.getElementById("decrypt-button").className+=" button-night-mode"
+  document.getElementById("encrypt-button").className+=" button-night-mode"
+  document.getElementById("copyButton").className+=" button-night-mode"
+  document.getElementById("footerText").className+=" text-night-mode"
+  document.getElementById("githubPath").setAttribute("fill","white")
+  document.getElementById("imgMode").src = "assets/sun.svg";
 };
 
 /*
   funcion que aplica estilos en el css de los elementos para volver al estilo por defecto 
 */
 const useDefaultMode = () => {
-  document.getElementById("body").style.background = "#F1F0F0";
-  document.getElementById("textarea").style.background = "#FDF2D6";
-  document.getElementById("textarea").style.color = "#1b1717";
-  translatedTextHtml.style.background = "#FDF2D6";
-  translatedTextHtml.style.color = "#1b1717";
-  document.getElementById("wave-design").style.fill = "#0099ff";
-  document.getElementsByTagName("h1")[0].style.color = "#1b1717";
-  document.getElementById("appDescription").style.color = "#1b1717";
-  document.getElementById("padlockLocked").style.fill = "black";
-  document.getElementById("padlockOpen").style.fill = "black";
-  document.getElementById("switchModes").style.background =
-    "rgb(138, 142, 184)";
-  document.getElementById("decrypt-button").style.background = "#FAFAFA";
-  document.getElementById("decrypt-button").style.color = "black";
-  document.getElementById("encrypt-button").style.background = "#FAFAFA";
-  document.getElementById("encrypt-button").style.color = "black";
-  document.getElementById("copy-button").style.background = "#FAFAFA";
-  document.getElementById("copy-button").style.color = "black";
-  document.getElementById("footer-text").style.color = "black";
-  document.getElementById("nightMode").src = "assets/night-mode.svg";
+  document.getElementById("body").className = ""
+  document.getElementById("textarea").className = "text-area"
+  translatedTextHtml.className = "text-area"
+  document.getElementById("wavePath").setAttribute("fill","#0099ff")
+  document.getElementsByTagName("h1")[0].className = "title"
+  document.getElementById("appDescription").className = "app-description"
+  document.getElementById("padlockLocked").setAttribute("fill","black")
+  document.getElementById("padlockOpen").setAttribute("fill","black")
+  document.getElementById("switchModes").className = "switch-mode-button"
+  document.getElementById("decrypt-button").className = "button"
+  document.getElementById("encrypt-button").className = "button"
+  document.getElementById("copyButton").className = "copy-button"
+  document.getElementById("footerText").className = "footer-text"
+  document.getElementById("githubPath").setAttribute("fill","black")
+  document.getElementById("imgMode").src = "assets/night-mode.svg";
 };
+
 
 /*
   asignacion de las funciones a los botones
@@ -253,14 +246,27 @@ document.getElementById("switchModes").addEventListener("click", () => {
 
 /*
   usa la funcion checkTextArea para comprobar si la frase por defecto del cuadro de traduccion
-  sigue en el mismo, de ser asi ejecuta un alert en el navegador diciendo que no se puede copiar 
+  sigue en el mismo, de ser asi inserta un mensaje de que no hay nada para copiar
 */
 copyButton.onclick = () => {
-  if (checkTextArea()) alert("no hay nada para copiar");
+  if (checkTextArea()) createTextNotification("p","cantCopy","no hay nada que copiar");
 };
-document.getElementById("footer-text").onclick = () => {
+
+
+/*
+  url para el texto del footer
+*/
+document.getElementById("footerText").onclick = () => {
   window.open("https://github.com/alanrjn01");
 };
 
+document.getElementById("githubSvg").onclick = () => {
+  window.open("https://github.com/alanrjn01");
+};
+
+
+/*
+  asignacion de funciones a los botones de encriptar y desencriptar
+*/
 encryptButton.onclick = Encrypt;
 decryptButton.onclick = Decrypt;
