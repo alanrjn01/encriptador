@@ -9,17 +9,11 @@ const clipboardContainerId = document.getElementById("clipboardContainerId");
 const nightIcon = document.getElementById("switchModes");
 let defaultMode = true;
 
-console.log(window.screen.width + "x" + window.screen.height);
-
 /*
-  comprueba si el cuadro de texto esta vacio o tiene la frase por defecto y devuelve true o false
+  comprueba si el cuadro de texto esta vacio y devuelve true o false
 */
 const checkTextArea = () => {
-  return (
-    translatedTextHtml.innerHTML == "" ||
-    translatedTextHtml.innerHTML ==
-      "todavia no hay nada que mostrar. intenta encriptar algo!"
-  );
+  return translatedTextHtml.innerHTML == "";
 };
 
 /*
@@ -30,7 +24,7 @@ const checkTextArea = () => {
 */
 const Encrypt = () => {
   let text = document.getElementById("textarea").value;
-  let textReplace = text.replace(/[$%&|<>#]/g,"")
+  let textReplace = text.replace(/[$%&|<>#]/g, "");
   let encryptedText = "";
   if (textReplace != "") {
     for (let i = 0; i <= textReplace.length; i++) {
@@ -187,21 +181,21 @@ const createTextNotification = (element, id, HTMLText) => {
   funcion que aplica estilos en el css de los elementos para efectuar un modo noche
 */
 const useNightMode = () => {
-  console.log(document.getElementById("body").className)
-  document.getElementById("body").className += " body-night-mode"
-  document.getElementById("textarea").className += " text-area-night-mode"
-  translatedTextHtml.className+=" text-area-night-mode"
-  document.getElementById("wavePath").setAttribute("fill","rgb(148 145 155)")
-  document.getElementsByTagName("h1")[0].className+=" text-night-mode"
-  document.getElementById("appDescription").className+=" text-night-mode"
-  document.getElementById("padlockLocked").setAttribute("fill","#E8E0E0")
-  document.getElementById("padlockOpen").setAttribute("fill","#E8E0E0")
-  document.getElementById("switchModes").className+=" switch-mode-night-mode"
-  document.getElementById("decrypt-button").className+=" button-night-mode"
-  document.getElementById("encrypt-button").className+=" button-night-mode"
-  document.getElementById("copyButton").className+=" button-night-mode"
-  document.getElementById("footerText").className+=" text-night-mode"
-  document.getElementById("githubPath").setAttribute("fill","white")
+  console.log(document.getElementById("body").className);
+  document.getElementById("body").className += " body-night-mode";
+  document.getElementById("textarea").className += " text-area-night-mode";
+  translatedTextHtml.className += " text-area-night-mode";
+  document.getElementById("wavePath").setAttribute("fill", "rgb(148 145 155)");
+  document.getElementsByTagName("h1")[0].className += " text-night-mode";
+  document.getElementById("appDescription").className += " text-night-mode";
+  document.getElementById("padlockLocked").setAttribute("fill", "#E8E0E0");
+  document.getElementById("padlockOpen").setAttribute("fill", "#E8E0E0");
+  document.getElementById("switchModes").className += " switch-mode-night-mode";
+  document.getElementById("decrypt-button").className += " button-night-mode";
+  document.getElementById("encrypt-button").className += " button-night-mode";
+  document.getElementById("copyButton").className += " button-night-mode";
+  document.getElementById("footerText").className += " text-night-mode";
+  document.getElementById("githubPath").setAttribute("fill", "white");
   document.getElementById("imgMode").src = "assets/sun.svg";
 };
 
@@ -209,27 +203,22 @@ const useNightMode = () => {
   funcion que aplica estilos en el css de los elementos para volver al estilo por defecto 
 */
 const useDefaultMode = () => {
-  document.getElementById("body").className = ""
-  document.getElementById("textarea").className = "text-area"
-  translatedTextHtml.className = "text-area"
-  document.getElementById("wavePath").setAttribute("fill","#0099ff")
-  document.getElementsByTagName("h1")[0].className = "title"
-  document.getElementById("appDescription").className = "app-description"
-  document.getElementById("padlockLocked").setAttribute("fill","black")
-  document.getElementById("padlockOpen").setAttribute("fill","black")
-  document.getElementById("switchModes").className = "switch-mode-button"
-  document.getElementById("decrypt-button").className = "button"
-  document.getElementById("encrypt-button").className = "button"
-  document.getElementById("copyButton").className = "copy-button"
-  document.getElementById("footerText").className = "footer-text"
-  document.getElementById("githubPath").setAttribute("fill","black")
+  document.getElementById("body").className = "";
+  document.getElementById("textarea").className = "text-area";
+  translatedTextHtml.className = "text-area";
+  document.getElementById("wavePath").setAttribute("fill", "#0099ff");
+  document.getElementsByTagName("h1")[0].className = "title";
+  document.getElementById("appDescription").className = "app-description";
+  document.getElementById("padlockLocked").setAttribute("fill", "black");
+  document.getElementById("padlockOpen").setAttribute("fill", "black");
+  document.getElementById("switchModes").className = "switch-mode-button";
+  document.getElementById("decrypt-button").className = "button";
+  document.getElementById("encrypt-button").className = "button";
+  document.getElementById("copyButton").className = "copy-button";
+  document.getElementById("footerText").className = "footer-text";
+  document.getElementById("githubPath").setAttribute("fill", "black");
   document.getElementById("imgMode").src = "assets/night-mode.svg";
 };
-
-
-/*
-  asignacion de las funciones a los botones
-*/
 
 /*
   detecta el click en el boton de switchModes para cambiar entre el modo noche y el modo default
@@ -249,9 +238,9 @@ document.getElementById("switchModes").addEventListener("click", () => {
   sigue en el mismo, de ser asi inserta un mensaje de que no hay nada para copiar
 */
 copyButton.onclick = () => {
-  if (checkTextArea()) createTextNotification("p","cantCopy","no hay nada que copiar");
+  if (checkTextArea())
+    createTextNotification("p", "cantCopy", "no hay nada que copiar");
 };
-
 
 /*
   url para el texto del footer
@@ -263,7 +252,6 @@ document.getElementById("footerText").onclick = () => {
 document.getElementById("githubSvg").onclick = () => {
   window.open("https://github.com/alanrjn01");
 };
-
 
 /*
   asignacion de funciones a los botones de encriptar y desencriptar

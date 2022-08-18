@@ -227,7 +227,7 @@ button:hover, #copy-button:hover {
 /*
     media queries
 */
-@media screen and (max-width:375px){
+@media screen and (max-width:415px){
     .padlock-open, .padlock-locked{
         opacity: 0;
     }
